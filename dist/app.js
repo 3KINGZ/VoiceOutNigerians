@@ -1,6 +1,6 @@
-//render element from sebnator object to browser
-function renderElements() {
-    senators.forEach(function (senator) {
+//render element from senator object to browser
+function renderElements(sens) {
+    sens.forEach(function (senator) {
         let container = document.createElement("div");
         container.innerHTML = `<p><span class="bold">Name:</span>${senator.name}<br>
         <span class="bold">Phone:</span>${senator.phone}<br>
@@ -13,7 +13,7 @@ function renderElements() {
         document.querySelector('#senators').appendChild(container);
     })
 }
-renderElements();
+renderElements(senators);
 
 //search function to filter name and state from senator object
 function filterSenators(searchString) {
@@ -23,18 +23,7 @@ function filterSenators(searchString) {
         return nameSearch || stateSearch;
     })
     if (fSenator) {
-        fSenator.forEach(function (filter) {
-            let container = document.createElement("div");
-            container.innerHTML = `<p><span class="bold">Name:</span>${filter.name}<br>
-        <span class="bold">Phone:</span>${filter.phone}<br>
-        <span class = "bold" >Email: </span>${filter.email}<br>
-        <span class = "bold" >State: </span>${filter.state}<br>
-        <span class = "bold" >District: </span>${filter.district}<br>
-        <span class = "bold" >Party: </span>${filter.party}<br>
-        <hr>
-        </p >`
-            document.querySelector('#senators').appendChild(container);
-        })
+        renderElements(fSenator);
     } else {
         renderElements()
     }
